@@ -27,6 +27,9 @@
 
             // Weiterleitung zur erweiterten URL
             window.location.href = erweiterteURL;
+
+            // Löschung des bestehenden Eingabewertes
+            document.getElementById('textfeld').value = "";
         }
 
         // Überprüfen, ob die URL einen Text-Parameter enthält
