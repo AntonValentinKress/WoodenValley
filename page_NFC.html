@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ansicht 2</title>
+  <title>NFC-Tag Leser</title>
 </head>
 <body>
-  <h1>Ansicht 2</h1>
-  <p>Dies ist die zweite Ansicht.</p>
+  <h1>NFC-Tag Leser</h1>
+  <p>Halte ein NFC-Tag in die Nähe deines Geräts, um es zu lesen.</p>
   <p><a href="index.html">Zurück zur Startseite</a></p>
 
   <!-- Hier wird der vorhandene HTML-Code eingefügt -->
 
+  <button onclick="startNFCReader()">Starte NFC-Leser</button>
+    <div id="output"></div>
+
+    <script src="index.js"></script>
+  
   <h3>Background</h3>
     <p>
       Web NFC zielt darauf ab, Websites die Fähigkeit zu geben, NFC-Tags 
@@ -23,19 +28,5 @@
       Karten (HCE) werden innerhalb des aktuellen Anwendungsbereichs nicht unterstützt.
     </p>
 
-    <button id="scanButton">Scan</button>
-    <button id="writeButton">Write</button>
-    <button id="makeReadOnlyButton">Make Read-Only</button>
-
-    <div id="output"></div>
-
-    <script>
-        log = ChromeSamples.log;
-
-        if (!("NDEFReader" in window))
-            document.getElementById("output").innerText = "Web NFC is not available. Use Chrome on Android.";
-    </script>
-
-    <script src="index.js"></script>
 </body>
 </html>
