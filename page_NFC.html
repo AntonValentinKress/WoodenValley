@@ -13,27 +13,29 @@
   <!-- Hier wird der vorhandene HTML-Code eingefügt -->
 
   <h3>Background</h3>
-  <p>
-  Web NFC aims to provide sites the ability to read and write to NFC tags when
-  they are brought in close proximity to the user’s device (usually 5-10 cm, 2-4
-  inches). The current scope is limited to NDEF, a lightweight binary message
-  format. Low-level I/O operations (e.g. ISO-DEP, NFC-A/B, NFC-F) and Host-based
-  Card Emulation (HCE) are not supported within the current scope.
-  </p>
+    <p>
+      Web NFC zielt darauf ab, Websites die Fähigkeit zu geben, NFC-Tags 
+      zu lesen und zu beschreiben, wenn sie in unmittelbare Nähe des Geräts 
+      des Benutzers gebracht werden (normalerweise 5-10 cm, 2-4 Zoll). 
+      Der aktuelle Anwendungsbereich ist auf NDEF, ein leichtgewichtiges 
+      binäres Nachrichtenformat, beschränkt. Niedrigstufige I/O-Operationen 
+      (z. B. ISO-DEP, NFC-A/B, NFC-F) und die Emulation von Host-basierten 
+      Karten (HCE) werden innerhalb des aktuellen Anwendungsbereichs nicht unterstützt.
+    </p>
 
-  <button id="scanButton">Scan</button>
-  <button id="writeButton">Write</button>
-  <button id="makeReadOnlyButton">Make Read-Only</button>
+    <button id="scanButton">Scan</button>
+    <button id="writeButton">Write</button>
+    <button id="makeReadOnlyButton">Make Read-Only</button>
 
-  {% include output_helper.html initial_output_content=initial_output_content %}
+    <div id="output"></div>
 
-  <script>
-  log = ChromeSamples.log;
+    <script>
+        log = ChromeSamples.log;
 
-  if (!("NDEFReader" in window))
-    ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
-  </script>
+        if (!("NDEFReader" in window))
+            document.getElementById("output").innerText = "Web NFC is not available. Use Chrome on Android.";
+    </script>
 
-  {% include js_snippet.html filename='index.js' %}
+    <script src="index.js"></script>
 </body>
 </html>
