@@ -1,24 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zusätzlicher Baustein</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
 </head>
 <body>
-    <div id="erweiterterString"></div>
-
-    <script>
-        // JavaScript-Code zum Extrahieren des zusätzlichen Bausteins aus der URL und Anzeigen auf der Webseite
-        window.onload = function() {
-            // Extrahiere den zusätzlichen Baustein aus der URL
-            var urlParams = new URLSearchParams(window.location.search);
-            var zusatzString = urlParams.get('zusatz');
-
-            // Füge den zusätzlichen Baustein dem HTML-Dokument hinzu
-            var stringContainer = document.getElementById("erweiterterString");
-            stringContainer.innerText = "Erweiterter String: " + zusatzString;
-        };
-    </script>
+  <h1>Willkommen auf der Startseite der WoodenValey GitHub Web-App!</h1>
+  <p>Hier kannst du zwischen den verschiedenen Funkionen wechseln:</p>
+  <ul>
+    <li><a href="page_NFC.html">NFC-Tag Reader</a></li>
+    <li><a href="page_QR.html">QR-Code Reader</a></li>
+  </ul>
 </body>
 </html>
