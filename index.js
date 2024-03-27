@@ -1,44 +1,16 @@
-scanButton.addEventListener("click", async () => {
-  log("User clicked scan button");
+function startNFCReader() {
+    const reader = new NDEFReader();
 
-  try {
-    const ndef = new NDEFReader();
-    await ndef.scan();
-    log("> Scan started");
+    reader.scan().then(() => {
+        console.log("NFC-Reader gestartet.");
 
-    ndef.addEventListener("readingerror", () => {
-      log("Argh! Cannot read data from the NFC tag. Try another one?");
+        reader.onreading = event => {
+            const tag = event.message.records[0];
+            const data = tag.data ? new TextDecoder().decode(tag.data) : "Keine Daten gefunden";
+            document.getElementById('output').innerText = "Gelesene Daten: " + data;
+        };
+    }).catch(error => {
+        console.error("Fehler beim Starten des NFC-Readers:", error);
+        document.getElementById('output').innerText = "Fehler beim Starten des NFC-Readers";
     });
-
-    ndef.addEventListener("reading", ({ message, serialNumber }) => {
-      log(`> Serial Number: ${serialNumber}`);
-      log(`> Records: (${message.records.length})`);
-    });
-  } catch (error) {
-    log("Argh! " + error);
-  }
-});
-
-writeButton.addEventListener("click", async () => {
-  log("User clicked write button");
-
-  try {
-    const ndef = new NDEFReader();
-    await ndef.write("Hello world!");
-    log("> Message written");
-  } catch (error) {
-    log("Argh! " + error);
-  }
-});
-
-makeReadOnlyButton.addEventListener("click", async () => {
-  log("User clicked make read-only button");
-
-  try {
-    const ndef = new NDEFReader();
-    await ndef.makeReadOnly();
-    log("> NFC tag has been made permanently read-only");
-  } catch (error) {
-    log("Argh! " + error);
-  }
-});
+}
