@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR-Code Reader</title>
+</head>
+<body>
+  <h1>Reader</h1>
+  <p>Die Seite ermöglicht das auslesen von QR-Codes direkt aus dem Browser.</p>
+  
+  <div id="output"></div>
 
+    <script>
+        const scanner = new Instascan.Scanner({ video: document.getElementById('output') });
+
+        scanner.addListener('scan', function (content) {
+            console.log('QR-Code gescannt:', content);
+            alert('QR-Code gescannt: ' + content);
+        });
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error('Keine Kameras gefunden.');
+                alert('Keine Kameras gefunden.');
+            }
+        }).catch(function (error) {
+            console.error('Fehler beim Zugriff auf die Kamera:', error);
+            alert('Fehler beim Zugriff auf die Kamera: ' + error);
+        });
+    </script>
+
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  
+  <p><a href="index.html">Zurück zur Startseite</a></p>
+</body>
+</html>
