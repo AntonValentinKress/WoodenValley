@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zusätzlicher Baustein</title>
+</head>
+<body>
+    <div id="erweiterterString"></div>
+
+    <script>
+        // JavaScript-Code zum Extrahieren des zusätzlichen Bausteins aus der URL und Anzeigen auf der Webseite
+        window.onload = function() {
+            // Extrahiere den zusätzlichen Baustein aus der URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var zusatzString = urlParams.get('zusatz');
+
+            // Füge den zusätzlichen Baustein dem HTML-Dokument hinzu
+            var stringContainer = document.getElementById("erweiterterString");
+            stringContainer.innerText = "Erweiterter String: " + zusatzString;
+        };
+    </script>
+</body>
+</html>
