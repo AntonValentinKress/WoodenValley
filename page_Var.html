@@ -3,24 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zusätzlicher Baustein</title>
+  <title>Eingabefeld und OK-Button</title>
 </head>
 <body>
-  <h1>Ansicht 1</h1>
-  <p>Dies ist die erste Ansicht.</p>
+  <h1>Web-Variable</h1>
+  <p>Die Seite wird mit einer veränderlichen Variable aufgerufen.</p>
   
-  <div id="erweiterterString"></div>
-  <script>
-        // JavaScript-Code zum Extrahieren des zusätzlichen Bausteins aus der URL und Anzeigen auf der Webseite
-        window.onload = function() {
-            // Extrahiere den zusätzlichen Baustein aus der URL
-            var urlParams = new URLSearchParams(window.location.search);
-            var zusatzString = urlParams.get('zusatz');
+  <label for="textfeld">Beliebigen Text eingeben:</label>
+    <input type="text" id="textfeld">
+    <button onclick="okButtonClicked()">OK</button>
+    <div id="ausgabe"></div>
 
-            // Füge den zusätzlichen Baustein dem HTML-Dokument hinzu
-            var stringContainer = document.getElementById("erweiterterString");
-            stringContainer.innerText = "Erweiterter String: " + zusatzString;
-        };
+    <script>
+        function okButtonClicked() {
+            // Wert aus dem Eingabefeld abrufen
+            var eingabe = document.getElementById('textfeld').value;
+            
+            // Aktuelle URL holen
+            var aktuelleURL = window.location.href;
+
+            // Erweiterte URL mit dem eingegebenen Text erstellen
+            var erweiterteURL = aktuelleURL + '?text=' + encodeURIComponent(eingabe);
+
+            // Weiterleitung zur erweiterten URL
+            window.location.href = erweiterteURL;
+        }
+
+        // Überprüfen, ob die URL einen Text-Parameter enthält
+        var params = new URLSearchParams(window.location.search);
+        var text = params.get('text');
+        if (text) {
+            document.getElementById('ausgabe').innerText = 'Eingegebener Text: ' + text;
+        }
     </script>
   
   <p><a href="index.html">Zurück zur Startseite</a></p>
